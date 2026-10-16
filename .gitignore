@@ -1,0 +1,33 @@
+
+# Python
+__pycache__/
+*.py[cod]
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Pytest
+.pytest_cache/
+
+# Generated test reports and screenshots
+allure-results/
+allure-report/
+screenshots/
+
+# Secrets and environment variables
+.env
+.env.*
+!.env.example
+
+# IDE settings
+.idea/
+
+# Windows files
+Thumbs.db
+Desktop.ini
+
+# Temporary Python practice files
+data/test_users.txt
+data/test_results.txt
