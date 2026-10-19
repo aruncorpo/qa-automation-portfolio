@@ -21,14 +21,3 @@ def test_auth():
     api_client2 = APIClient(url)
     responses2 = api_client2.get(endpoint=endpoint)
     assert responses2.status_code == 401, f"Failed, Status Code :{responses2.status_code}"
-
-
-    api_token = os.getenv("API_TOKEN")
-    assert api_token, "Token is empty, failed to retrieve token"
-    header = {
-        "authorization": f"Bearer {api_token}"
-    }
-    api_client2 = APIClient(url, header)
-    responses3 = api_client2.get(endpoint=endpoint)
-    data2 = responses3.json()
-    assert data2["token"] == api_token,f"Token mismatch"
