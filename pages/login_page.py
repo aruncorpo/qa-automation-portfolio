@@ -19,7 +19,9 @@ class LoginPage:
         self.driver.find_element(By.ID, loginid).click()
 
     def is_logged_in(self):
-        inventory_title = self.driver.find_element(By.CSS_SELECTOR, "[data-test='title']")
+        inventory_title = WebDriverWait(self.driver,3).until(
+            EC.visibility_of_element_located((By.CSS_SELECTOR, "[data-test='title']"))
+        )
         return inventory_title.text == "Products"
 
     def get_login_error(self):
