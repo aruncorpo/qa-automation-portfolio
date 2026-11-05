@@ -31,3 +31,6 @@ Desktop.ini
 # Temporary Python practice files
 data/test_users.txt
 data/test_results.txt
+
+#DB Browser project file
+*.sqbpro
