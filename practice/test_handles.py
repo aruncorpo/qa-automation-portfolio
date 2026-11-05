@@ -1,7 +1,7 @@
 from selenium.webdriver.common.by import By
 
 def test_initialization(driver):
-    driver.get('https://the-internet.herokuapp.com/windows?utm_source=chatgpt.com')
+    driver.get('https://the-internet.herokuapp.com/windows')
     original_tab = driver.current_window_handle
     driver.find_element(By.LINK_TEXT,"Click Here").click()
     handles = driver.window_handles

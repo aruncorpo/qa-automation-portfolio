@@ -1,7 +1,7 @@
 from selenium.webdriver.common.by import By
 
 def test_initialization(driver):
-    driver.get('https://the-internet.herokuapp.com/javascript_alerts?utm_source=chatgpt.com')
+    driver.get('https://the-internet.herokuapp.com/javascript_alerts')
     text = driver.find_element(By.XPATH,"//h3[text()='JavaScript Alerts']").text
     assert text == "JavaScript Alerts", "Page loading failed"
 

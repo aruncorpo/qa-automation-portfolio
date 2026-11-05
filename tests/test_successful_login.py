@@ -1,11 +1,11 @@
 import pytest
 from selenium.webdriver.common.by import By
-from tests.login_page import LoginPage
-from tests.inventory_page import InventoryPage
-from tests.cart_page import CartPage
-from tests.base_page import BasePage
-from tests.checkout_page import CheckoutPage
-from tests.overview_page import OverviewPage
+from pages.login_page import LoginPage
+from pages.inventory_page import InventoryPage
+from pages.cart_page import CartPage
+from pages.base_page import BasePage
+from pages.checkout_page import CheckoutPage
+from pages.overview_page import OverviewPage
 import data_prep
 
 @pytest.mark.parametrize(
@@ -24,12 +24,7 @@ def test_initialization(logged_in_driver):
     overviewpage = OverviewPage(logged_in_driver)
 
     inventorypage.add_item((By.ID, "add-to-cart-sauce-labs-backpack"))
-    label = basepage.get_visible_text((By.ID, "remove-sauce-labs-backpack"))
-    if label.text == "Add to cart":
-        inventorypage.add_item((By.ID, "add-to-cart-sauce-labs-backpack"))
-        assert inventorypage.get_cart_count() == 1, "Cart badge no changes"
-    elif label.text == "Remove":
-        assert basepage.get_visibility((By.CSS_SELECTOR, "[data-test='shopping-cart-badge']")) == False
+    assert inventorypage.get_cart_count() == 1, "Cart badge no changes"
     inventorypage.open_cart()
 
     assert cartpage.get_item_name("Sauce Labs Backpack") == "Sauce Labs Backpack", "Item missing"
@@ -46,7 +41,7 @@ def test_initialization(logged_in_driver):
     assert overviewpage.get_item_name("Sauce Labs Backpack") == "Sauce Labs Backpack", "Item missing"
     assert overviewpage.get_item_price("29.99") == 29.99, "Item missing"
     assert overviewpage.get_tax() == 2.40, "Value incorrect"
-    assert overviewpage.get_total() == 29.99 + 2.40, "Value incorrect"
+    assert overviewpage.get_total() == pytest.approx(29.99 + 2.40, abs=0.001), "Value incorrect"
     assert overviewpage.get_subtotal() == 29.99, "Value incorrect"
     assert overviewpage.get_payment_info() == "SauceCard #31337", "Value incorrect"
     assert overviewpage.get_shipping_info() == "Free Pony Express Delivery!", "Value incorrect"

@@ -4,7 +4,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
 
 def test_initialization(driver):
-    driver.get('https://the-internet.herokuapp.com/iframe?utm_source=chatgpt.com')
+    driver.get('https://the-internet.herokuapp.com/iframe')
     text = driver.find_element(By.XPATH,"//h3[text()='An iFrame containing the TinyMCE WYSIWYG Editor']").text
     assert text == "An iFrame containing the TinyMCE WYSIWYG Editor", "Text not found"
 

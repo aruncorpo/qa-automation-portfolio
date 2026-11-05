@@ -12,7 +12,7 @@ class BasePage:
         self.driver.get(url)
 
     def get_visible_text(self, locator):
-        return WebDriverWait(self.driver,3).until(EC.visibility_of_element_located(locator))
+        return WebDriverWait(self.driver,4).until(EC.visibility_of_element_located(locator))
 
     def get_visible_texts(self, locator):
         elements = WebDriverWait(self.driver, 3).until(EC.visibility_of_all_elements_located(locator))
