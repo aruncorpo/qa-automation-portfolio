@@ -11,10 +11,23 @@ from pages.base_page import BasePage
 from selenium.common import NoSuchElementException
 from selenium.common import TimeoutException
 
+def pytest_addoption(parser):
+  parser.addoption(
+      "--headless",
+      action="store_true",
+      help="Run Chrome without a window"
+  )
+
+
 @pytest.fixture
-def driver():
+def driver(request):
     chrome_options = Options()
     chrome_options.add_argument('--guest')
+
+    if request.config.getoption("--headless"):
+        chrome_options.add_argument("--headless=new")
+        chrome_options.add_argument("--window-size=1920,1080")
+
     driver = webdriver.Chrome(options=chrome_options)
     yield driver
     driver.quit()
@@ -31,9 +44,9 @@ def logged_in_driver(driver,request):
     try:
         loginpage.login(username, password)
         if not loginpage.is_logged_in():
-            pytest.fail(f"{username}logged_in_driver fixture creation failed")
+            pytest.fail(f"Login failed for {username}")
     except (NoSuchElementException, TimeoutException):
-        pytest.fail(f"{username}logged_in_driver fixture creation failed")
+        pytest.fail(f"Login failed for {username}")
 
     yield driver
 

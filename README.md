@@ -18,11 +18,12 @@ A hands-on test automation project using Python, Selenium WebDriver, pytest, and
 qa-automation-portfolio/
 ├── api_test/       # API client and API tests
 ├── data/           # Test data
+├── pages/          # Page Object Modules
 ├── practice/       # Selenium practice exercises
-├── tests/          # UI tests and page objects
+├── tests/          # Tests
 ├── utils/          # Reusable utilities
 ├── conftest.py     # Shared pytest fixtures
-├── data_prep.py    # Test data preparation
+├── data_prep.py    # Test data preparationgit
 └── README.md
 ```
 
@@ -51,9 +52,6 @@ Coverage includes:
 - Reusable API client with a persistent Requests session
 
 **Note:** JSONPlaceholder simulates write operations; created or updated resources are not permanently stored.
-
-## Setup
-
 
 ## Setup
 
@@ -115,4 +113,4 @@ The final Allure HTML report requires the Allure command-line tool to be install
 
 ## Learning Goals
 
-This project is part of my ongoing development in software testing and automation, with a focus on maintainable test frameworks, reliable test execution, and practical UI and API testing.
+This project is part of my ongoing development in software testing and automation, with a focus on maintainable test frameworks, reliable test execution, and practical UI testing, API testing and database testing.

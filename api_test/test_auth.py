@@ -1,5 +1,4 @@
 from api_test.api_client import APIClient
-import os
 
 def test_auth():
 
