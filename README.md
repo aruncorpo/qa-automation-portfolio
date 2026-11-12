@@ -1,4 +1,5 @@
 # QA Automation Portfolio
+[![Tests](https://github.com/aruncorpo/qa-automation-portfolio/actions/workflows/tests.yml/badge.svg?branch=main)](https://github.com/aruncorpo/qa-automation-portfolio/actions/workflows/tests.yml)
 
 A hands-on test automation project using Python, Selenium WebDriver, pytest, sqlite3 and Requests. This repository contains browser-based UI tests, API tests and SQL tests, with reusable components and automated test execution.
 
@@ -132,3 +133,4 @@ This project is part of my ongoing development in software testing and automatio
 
 ## Allure report
 ![Allure-Report.png](docs/Allure-Report.png)
+
