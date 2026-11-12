@@ -12,7 +12,8 @@ import data_prep
     "logged_in_driver",
         data_prep.get_successful_users()
     ,
-    indirect=["logged_in_driver"]
+    indirect=["logged_in_driver"],
+    ids = lambda user:user[0]
 )
 
 def test_initialization(logged_in_driver):
@@ -26,6 +27,9 @@ def test_initialization(logged_in_driver):
     inventorypage.add_item((By.ID, "add-to-cart-sauce-labs-backpack"))
     assert inventorypage.get_cart_count() == 1, "Cart badge no changes"
     inventorypage.open_cart()
+
+    assert basepage.get_visible_time(
+        (By.ID, "checkout"),10).text == "Checkout", "Cart page not found"
 
     assert cartpage.get_item_name("Sauce Labs Backpack") == "Sauce Labs Backpack", "Item missing"
     assert cartpage.get_item_price("29.99") == 29.99, "Item missing"

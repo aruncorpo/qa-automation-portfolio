@@ -14,6 +14,9 @@ class BasePage:
     def get_visible_text(self, locator):
         return WebDriverWait(self.driver,4).until(EC.visibility_of_element_located(locator))
 
+    def get_visible_time(self, locator, time):
+        return WebDriverWait(self.driver, time).until(EC.visibility_of_element_located(locator))
+
     def get_visible_texts(self, locator):
         elements = WebDriverWait(self.driver, 3).until(EC.visibility_of_all_elements_located(locator))
         elements_found = []
@@ -27,5 +30,5 @@ class BasePage:
         except TimeoutException:
             return False
 
-    def clicker(self, button):
-        return button.click()
+
+

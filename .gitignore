@@ -34,3 +34,6 @@ data/test_results.txt
 
 #DB Browser project file
 *.sqbpro
+
+#syncthing
+.stfolder

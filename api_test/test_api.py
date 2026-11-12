@@ -1,5 +1,7 @@
 import pytest
-from requests.exceptions import Timeout
+import requests
+from api_test.api_client import APIClient
+from requests.exceptions import ReadTimeout
 
 @pytest.mark.parametrize(
     "userid",
@@ -30,7 +32,7 @@ def test_get_posts_for_unknown_user(api_client):
     timeout = 10
     apiclient = api_client
 
-    response_get = apiclient.get(endpoint, parameters, timeout=10)
+    response_get = apiclient.get(endpoint, parameters, timeout)
     data = response_get.json()
     get_headers = response_get.headers
 
@@ -47,7 +49,6 @@ def test_post(api_client):
         "body": "I am butters",
         "userId": "1"
     }
-    timeout = 10
     endpoint = "/posts"
 
     responses = api_client.post(endpoint, payload, timeout=10)
@@ -59,10 +60,9 @@ def test_post(api_client):
     assert int(data["userId"]) == 1, f"data mismatch {data["userId"]}"
     assert data["id"], f"Failed to create ID"
 
-def test_request_timeout(api_client):
-    endpoint = "/posts"
-    with pytest.raises(Timeout):
-        api_client.get(endpoint, timeout=0.000001)
+def test_request_timeout():
+    with pytest.raises(ReadTimeout):
+        APIClient("https://httpbin.org").get("/delay/3", timeout=1)
 
 def test_get_unknown_resource(api_client):
     endpoint = "/posts/999999"
@@ -71,7 +71,7 @@ def test_get_unknown_resource(api_client):
     response_headers = responses.headers
     assert "application/json" in response_headers['Content-Type'], f"Content Type not Json,{response_headers["Content-Type"]}"
     data = responses.json()
-    print(data)
+    assert data == {}, f"{data} is not empty"
 
 def test_put_post(api_client):
     endpoint = "/posts/1"
@@ -109,4 +109,4 @@ def test_delete_post(api_client):
     responses = api_client.delete(endpoint)
     assert responses.status_code == 200, f"Failed to delete, Status Code :{responses.status_code}"
     data = responses.json()
-    print(data)
+    assert data == {}, f"{data} is not empty"
