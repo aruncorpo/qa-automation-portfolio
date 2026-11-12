@@ -1,6 +1,6 @@
 # QA Automation Portfolio
 
-A hands-on test automation project using Python, Selenium WebDriver, pytest, and Requests. This repository contains browser-based UI tests and API tests, with reusable components and automated test execution.
+A hands-on test automation project using Python, Selenium WebDriver, pytest, sqlite3 and Requests. This repository contains browser-based UI tests, API tests and SQL tests, with reusable components and automated test execution.
 
 ## Tech Stack
 
@@ -8,6 +8,7 @@ A hands-on test automation project using Python, Selenium WebDriver, pytest, and
 - **Selenium WebDriver** — browser automation
 - **pytest** — test execution, fixtures, and parametrization
 - **Requests** — HTTP API testing
+- **SQLite3** — Database testing
 - **Git and GitHub** — version control
 - **CSV** — data-driven test inputs
 - **Allure** — test reporting
@@ -16,14 +17,16 @@ A hands-on test automation project using Python, Selenium WebDriver, pytest, and
 
 ```text
 qa-automation-portfolio/
-├── api_test/       # API client and API tests
+├── api_test/       # API Testing
 ├── data/           # Test data
+├── docs/           # Reports
 ├── pages/          # Page Object Modules
 ├── practice/       # Selenium practice exercises
+├── sql_practice/   # SQL Testing
 ├── tests/          # Tests
 ├── utils/          # Reusable utilities
 ├── conftest.py     # Shared pytest fixtures
-├── data_prep.py    # Test data preparationgit
+├── data_prep.py    # Test data preparation
 └── README.md
 ```
 
@@ -51,13 +54,13 @@ Coverage includes:
 - Request timeouts
 - Reusable API client with a persistent Requests session
 
-**Note:** JSONPlaceholder simulates write operations; created or updated resources are not permanently stored.
+**Note:** These API tests run against public practice services (such as JSONPlaceholder). JSONPlaceholder simulates write operations; created or updated resources are not permanently stored.
 
 ## Setup
 
 ### Prerequisites
 
-- Python installed
+- Python version 3.12.0+ installed
 - Google Chrome installed for UI tests
 - Git installed
 
@@ -91,10 +94,21 @@ Run all collected tests:
 python -m pytest
 ```
 
+Run all the  tests in headless mode:
+```powershell
+python -m pytest --headless
+```
+
 Run API tests:
 
 ```powershell
 python -m pytest api_test -v
+```
+
+Run SQL tests:
+
+```powershell
+python -m pytest sql_practice -v
 ```
 
 Run UI tests:
@@ -113,4 +127,8 @@ The final Allure HTML report requires the Allure command-line tool to be install
 
 ## Learning Goals
 
-This project is part of my ongoing development in software testing and automation, with a focus on maintainable test frameworks, reliable test execution, and practical UI testing, API testing and database testing.
+This project is part of my ongoing development in software testing and automation, with a focus on maintainable test frameworks, reliable test execution, and practical UI testing, API testing and SQL testing.
+
+
+## Allure report
+![Allure-Report.png](docs/Allure-Report.png)
